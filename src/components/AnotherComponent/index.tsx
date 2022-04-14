@@ -5,10 +5,9 @@ import './style.scss';
 
 const AnotherComponent: React.FC<AnotherComponentProps> = ({ handleClick }) => (
   <div>
-    <button
-      className="button-test"
-      onClick={(event) => handleClick(event, 1)}
-    ></button>
+    <button className="button-test" onClick={(event) => handleClick(event, 1)}>
+      Click
+    </button>
   </div>
 );
 

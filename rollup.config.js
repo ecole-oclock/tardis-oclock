@@ -43,6 +43,7 @@ export default [
 
       commonjs(),
       typescript({
+        useTsconfigDeclarationDir: true,
         tsconfig: './tsconfig.json',
       }),
       babel({
@@ -64,7 +65,7 @@ export default [
     external: ['react', 'react-dom'],
   },
   {
-    input: 'dist/index.d.ts',
+    input: 'dist/types/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.scss$/],
     plugins: [dts()],

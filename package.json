@@ -1,8 +1,7 @@
 {
-  "name": "rollup-template-amaury",
+  "name": "tardis-oclock",
   "version": "0.0.4",
-  "description": "testing a rollup bundle",
-  "main": "dist/index.js",
+  "description": "React component librar",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -20,13 +19,8 @@
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "keywords": [
-    "rollup",
-    "react",
-    "typescript",
-    "sass",
-    "eslint",
-    "prettier",
-    "husky"
+    "timeline",
+    "oclock"
   ],
   "author": "",
   "license": "ISC",

@@ -4,17 +4,15 @@
     "module": "ESNext",
     "jsx": "react",
     "sourceMap": true,
-
     "strict": true,
     "outDir": "dist",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "dist/types",
     "baseUrl": "./src",
     "paths": {
       "src/*": ["*"]

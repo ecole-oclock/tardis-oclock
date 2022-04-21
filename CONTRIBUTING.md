@@ -1,27 +1,29 @@
-# Fichier Contributing
+# Contributing to tardis-oclock
 
-Rédiger dans ce fichier les directives de contributions à la librairie.
-Comment déposer une issue (créer un template d'issue et modèles de pull reuest)
-
-## Bugs
+First off, thank you for your interest and considering contributing to Tardis-Oclock components library.  
+It's people like you that make Tardis-Oclock such a great tool.
+By following these few general guidelines on contributing and reporting bugs, you show that you respect the time of the developers who manage and develop this open source library. In return, they should reciprocate by addressing your issue, evaluating changes, and helping you finalise your pull requests.  
+Notice that all of your interactions in the project are expected to follow our [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ---
 
+## Bugs
+
 ### Known issues
 
-You can find all the opened issues on [github](https://github.com/ecole-oclock/tardis-oclock/issues).
+You can find all the opened issues [here](https://github.com/ecole-oclock/tardis-oclock/issues).
 
 ### Reporting new issues
 
-You can report bugs in order to solve them. For this, you have to post an issue following a template. Before reporting a new issue, try to make sure your problem dosn't already exist.
+You can report bugs in order to solve them. For this, you have to post an issue following a template. Before reporting a new issue, try to make sure your problem doesn't already exist by searching issues for similar tickets.
 
 ### Security bugs
 
 You can report vulnerability by contacting us. (TODO email de contact)
 
-## Contributing to tardis-oclock
-
 ---
+
+## Contributing to tardis-oclock
 
 ### Code of conduct
 
@@ -36,9 +38,9 @@ Each component folder should contain :
 Also to be added for each component:
 
 - make the necessary tests to validate the component by creating a file named `ComponentName.test.tsx` in the root folder `__tests__/components`
-- write a story using the [storybook tool](https://storybook.js.org/docs/react/writing-docs/introduction) which clearly describe the roles and functionalities of the component to be submitted in a file named `ComponentName.stories.tsx` in the `src/stories` folder, in order to increase the documentation
-- don't forget to import/export the component in the `index.ts` file at the root of the `src/components` folder to make them usable in the library after the build command  
-  Please also respect the structure of the cascading style sheets by reusing or enhancing existing variables, and respecting the [BEM] methodology (http://getbem.com/)
+- write a story using the [storybook tool](https://storybook.js.org/docs/react/writing-docs/introduction) which clearly describe the roles, features and props of the component to be submitted in a file named `ComponentName.stories.tsx` in the `src/stories` folder, in order to increase the documentation
+- don't forget to import/export the component in the `index.ts` file at the root of the `src/components` folder to make it usable in the library after the build command
+- please also respect the structure of the cascading style sheets and global design UI/UX by reusing or enhancing existing [variables](./src/scss/_vars.scss), and respecting the [BEM methodology](http://getbem.com/)
 
 For instance, documentation improvements are as important as code changes.
 
@@ -47,8 +49,10 @@ For instance, documentation improvements are as important as code changes.
 Working on your first Pull Request? You can learn how from this free video series:  
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
-## Licence
+//TODO création d'un template de pull request + documentation du fork du projet
 
 ---
 
-By contributing your code to the [tardis-oclock](https://github.com/ecole-oclock/tardis-oclock) Github repository, you agree to licence your contribution under <CHOOSEN_LICENCE>
+## Licence
+
+By contributing your code to the [tardis-oclock](https://github.com/ecole-oclock/tardis-oclock) Github repository, you agree to licence your contribution under [MIT Licence](./LICENCE)

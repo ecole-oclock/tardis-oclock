@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TestComponentProps from './TestComponent.types';
+import { TestComponentProps } from './TestComponent.types';
 
 import './style.scss';
 

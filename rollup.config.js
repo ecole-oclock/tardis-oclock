@@ -10,6 +10,7 @@ import alias from '@rollup/plugin-alias';
 import packageJson from './package.json';
 import path from 'path';
 import styles from 'rollup-plugin-styles';
+import dts from 'rollup-plugin-dts';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -37,14 +38,13 @@ export default [
           includePaths: [path.resolve('../../node_modules')],
         },
       }),
-      peerDepsExternal(),
       resolve(),
+      peerDepsExternal(),
+
       commonjs(),
       typescript({
         useTsconfigDeclarationDir: true,
-        tsconfigOverride: {
-          exclude: ['**/__tests__', '**/*.test.ts'],
-        },
+        tsconfig: './tsconfig.json',
       }),
       babel({
         exclude: 'node_modules/**',
@@ -55,7 +55,7 @@ export default [
         resolve: ['.js', '.ts', '.tsx', '.jsx', '.css', '.scss'],
         entries: [
           { find: 'src', replacement: './src' },
-          { find: 'components', replacement: './src/components' },
+          // { find: 'components', replacement: './src/components' },
         ],
       }),
       image(),
@@ -63,5 +63,11 @@ export default [
       isProd && terser({ module: true }),
     ],
     external: ['react', 'react-dom'],
+  },
+  {
+    input: 'dist/types/index.d.ts',
+    output: [{ file: 'dist/index.d.ts', format: 'esm' }],
+    external: [/\.scss$/],
+    plugins: [dts()],
   },
 ];

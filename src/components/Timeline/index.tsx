@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'src/utils/dayjs';
-import { getDatesInArray } from '../../utils/utils';
+import { getDatesInArray } from 'src/utils/utils';
 import { TimelineProps } from './Timeline.types';
 import classNames from 'classnames';
 import './style.scss';
-
+import { toggler } from 'src/hooks';
 const Timeline: React.FC<TimelineProps> = ({
   start,
   interval,
@@ -49,15 +49,32 @@ const Timeline: React.FC<TimelineProps> = ({
                                 className="timeline__days__columns"
                                 key={date.format()}
                               >
-                                {dayjs(date).weekday() === 0 ? (
+                                {/* {dayjs(date).weekday() === 0 ? (
                                   <span className="timeline__weeks--info">
                                     {dayjs(date).format('ww')}
                                   </span>
                                 ) : (
-                                  <span className="timeline__weeks--info--hidden">
-                                    {dayjs(date).format('ww')}
-                                  </span>
-                                )}
+                                  (dayjs(date).weekday() !== 5 ||
+                                    dayjs(date).weekday() !== 6) && (
+                                    <span className="timeline__weeks--info--hidden">
+                                      {dayjs(date).format('ww')}
+                                    </span>
+                                  )
+                                )} */}
+                                <span
+                                  className={classNames({
+                                    'timeline__weeks--info':
+                                      dayjs(date).weekday() === 0,
+                                    'timeline__weeks--info--hidden':
+                                      dayjs(date).weekday() !== 0,
+                                    'weekend--hidden':
+                                      (dayjs(date).weekday() === 5 ||
+                                        dayjs(date).weekday() === 6) &&
+                                      !showWeekend,
+                                  })}
+                                >
+                                  {dayjs(date).format('ww')}
+                                </span>
                                 <div
                                   className={classNames(
                                     'timeline__days--info',

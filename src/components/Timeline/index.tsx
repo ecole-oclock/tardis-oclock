@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import dayjs from 'src/utils/dayjs';
 import { getDatesInArray } from '../../utils/utils';
 import { TimelineProps } from './Timeline.types';
-
+import classNames from 'classnames';
 import './style.scss';
 
 const Timeline: React.FC<TimelineProps> = ({
@@ -59,43 +59,34 @@ const Timeline: React.FC<TimelineProps> = ({
                                   </span>
                                 )}
                                 <div
-                                  className={`timeline__days--info 
-                          ${dayjs(date).isToday() ? 'today' : ''}
-                          ${
-                            dayjs(date).weekday() === 5 ||
-                            dayjs(date).weekday() === 6
-                              ? 'weekend'
-                              : ''
-                          }
-                          ${
-                            (dayjs(date).weekday() === 5 ||
-                              dayjs(date).weekday() === 6) &&
-                            !showWeekend
-                              ? 'weekend--hidden'
-                              : ''
-                          }
-                          `}
+                                  className={classNames(
+                                    'timeline__days--info',
+                                    {
+                                      today: dayjs(date).isToday(),
+                                      weekend:
+                                        dayjs(date).weekday() === 5 ||
+                                        dayjs(date).weekday() === 6,
+                                      'weekend--hidden':
+                                        (dayjs(date).weekday() === 5 ||
+                                          dayjs(date).weekday() === 6) &&
+                                        !showWeekend,
+                                    }
+                                  )}
                                 >
                                   <span>{dayjs(date).format('ddd')}</span>
                                   <span>{dayjs(date).format('DD')}</span>
                                 </div>
                                 <div
-                                  className={`cols ${
-                                    dayjs(date).isToday() ? 'today' : ''
-                                  }${
-                                    dayjs(date).weekday() === 5 ||
-                                    dayjs(date).weekday() === 6
-                                      ? 'weekend'
-                                      : ''
-                                  }
-                          ${
-                            (dayjs(date).weekday() === 5 ||
-                              dayjs(date).weekday() === 6) &&
-                            !showWeekend
-                              ? 'weekend--hidden'
-                              : ''
-                          }
-                          `}
+                                  className={classNames('cols', {
+                                    today: dayjs(date).isToday(),
+                                    weekend:
+                                      dayjs(date).weekday() === 5 ||
+                                      dayjs(date).weekday() === 6,
+                                    'weekend--hidden':
+                                      (dayjs(date).weekday() === 5 ||
+                                        dayjs(date).weekday() === 6) &&
+                                      !showWeekend,
+                                  })}
                                 ></div>
                               </div>
                             ))}

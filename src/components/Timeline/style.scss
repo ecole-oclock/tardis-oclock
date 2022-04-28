@@ -66,11 +66,12 @@
       overflow-y: hidden;
     }
     &--info {
-      padding: 1rem;
+      padding: 0.2rem;
       display: flex;
       flex-direction: column;
       border-right: 1px solid vars.$primaryColor;
       border-top: 1px solid vars.$primaryColor;
+      border-bottom: 1px solid vars.$primaryColor;
     }
   }
 }

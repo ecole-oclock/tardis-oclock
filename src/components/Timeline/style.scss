@@ -1,6 +1,6 @@
 @use 'src/scss/vars';
 
-.timelineTest {
+.timeline {
   &__container {
     display: flex;
     overflow-x: scroll;
@@ -10,9 +10,16 @@
   &__years {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     &--info {
       border-bottom: 1px solid vars.$primaryColor;
       border-right: 1px solid vars.$primaryColor;
+      text-align: left;
+      padding: 0.2rem;
+      & span {
+        position: sticky;
+        left: 20px;
+      }
     }
   }
   &__months {
@@ -21,6 +28,12 @@
     &--info {
       border-bottom: 1px solid vars.$primaryColor;
       border-right: 1px solid vars.$primaryColor;
+      text-align: left;
+      padding: 0.2rem;
+      & span {
+        position: sticky;
+        left: 20px;
+      }
     }
   }
   &__weeks {
@@ -28,11 +41,19 @@
     flex-direction: column;
     flex-wrap: nowrap;
     &--info {
-      padding: 1rem;
-      margin: 0.3rem;
+      width: 1.5rem;
+      padding: 0.2rem;
+      margin: 0.2rem;
       border-radius: 50%;
       color: vars.$lightColor;
       background-color: vars.$primaryColor;
+      font-size: 0.8rem;
+      &--hidden {
+        visibility: hidden;
+        width: 1.5rem;
+        padding: 0.2rem;
+        margin: 0.2rem;
+      }
     }
   }
   &__days {

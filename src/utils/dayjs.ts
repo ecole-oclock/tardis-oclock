@@ -13,6 +13,7 @@ import isBetween from 'dayjs/plugin/isBetween';
 import objectSupport from 'dayjs/plugin/objectSupport';
 import utc from 'dayjs/plugin/utc';
 import isToday from 'dayjs/plugin/isToday';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 
 import 'dayjs/locale/fr';
 dayjs.locale('fr');
@@ -30,4 +31,5 @@ dayjs.extend(isBetween);
 dayjs.extend(objectSupport);
 dayjs.extend(utc);
 dayjs.extend(isToday);
+dayjs.extend(isSameOrBefore);
 export default dayjs;

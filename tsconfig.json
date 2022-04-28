@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "module": "ESNext",
     "jsx": "react",
     "sourceMap": true,
@@ -19,5 +20,5 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules/*", "dist", "**/*.test.ts"]
+  "exclude": ["node_modules/*", "dist"]
 }

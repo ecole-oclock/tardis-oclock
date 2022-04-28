@@ -4,8 +4,6 @@ Tardis O'clock is an open source ReactJS components library (add a better descri
 
 ## Getting Started
 
----
-
 ### Prerequisites
 
 Besoin de pré requis ? (dépendant de dayJs)
@@ -29,11 +27,7 @@ You can find the complete documentation [here](http://localhost:6006)
 
 ## Testing
 
----
-
 ## Build with :
-
----
 
 - [Rollup](https://rollupjs.org/guide/en/) - Module bundler for JavaScript.
 - [React](https://reactjs.org/docs/getting-started.html) - JavaScript library for building user interfaces.
@@ -48,18 +42,12 @@ You can find the complete documentation [here](http://localhost:6006)
 
 ## Depending on :
 
----
-
 - [DayJS](https://day.js.org/en/) - A minimalist Javascript library that parses, validates, manipulates, and displays dates and times
 
 ## Contributing
 
----
-
 Show [contributions rules](./CONTRIBUTING.md)
 
 ## Licence
-
----
 
 Show [licence](./LICENCE.md)

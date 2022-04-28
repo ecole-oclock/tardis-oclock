@@ -52,10 +52,10 @@ export default [
         babelHelpers: 'bundled',
       }),
       alias({
-        resolve: ['.js', '.ts', '.tsx', '.jsx', '.css', '.scss'],
+        resolve: ['.js', '.ts', '*.tsx', '.jsx', '.css', '.scss'],
         entries: [
           { find: 'src', replacement: './src' },
-          // { find: 'components', replacement: './src/components' },
+          { find: 'components', replacement: './src/components' },
         ],
       }),
       image(),

@@ -1,0 +1,72 @@
+@use 'src/scss/vars';
+
+.timelineTest {
+  &__container {
+    display: flex;
+    overflow-x: scroll;
+
+    flex-wrap: nowrap;
+  }
+  &__years {
+    display: flex;
+    flex-direction: column;
+    &--info {
+      border-bottom: 1px solid vars.$primaryColor;
+      border-right: 1px solid vars.$primaryColor;
+    }
+  }
+  &__months {
+    display: flex;
+    flex-wrap: nowrap;
+    &--info {
+      border-bottom: 1px solid vars.$primaryColor;
+      border-right: 1px solid vars.$primaryColor;
+    }
+  }
+  &__weeks {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    &--info {
+      padding: 1rem;
+      margin: 0.3rem;
+      border-radius: 50%;
+      color: vars.$lightColor;
+      background-color: vars.$primaryColor;
+    }
+  }
+  &__days {
+    display: flex;
+
+    &__columns {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow-y: hidden;
+    }
+    &--info {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid vars.$primaryColor;
+      border-top: 1px solid vars.$primaryColor;
+    }
+  }
+}
+
+.today {
+  background-color: orange;
+}
+.weekend {
+  background-color: vars.$primaryColor--darker;
+  color: vars.$lightColor;
+  &--hidden {
+    display: none;
+  }
+}
+.cols {
+  height: 1000px;
+
+  border-right: 1px solid vars.$primaryColor;
+  overflow-y: hidden;
+}

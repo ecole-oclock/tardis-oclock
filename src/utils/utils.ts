@@ -22,15 +22,18 @@ export const getDatesInArray = (
   start: TimelineProps['start'],
   interval: TimelineProps['interval'],
   granularity: TimelineProps['granularity']
-) => {
+): DatesInNestedArray => {
   let yearStart: dayjs.Dayjs = dayjs(start).dayOfYear(1);
   const dateEnd: dayjs.Dayjs = dayjs(start).add(interval, granularity);
   const years: YYYY[] = getAllYearsInterval(yearStart, dateEnd);
   const months: months = getAllMonths();
+
   const dates = years.map((year) => {
-    const yearDates = months.map((_, index) => {
-      const firstDayOfTheMonth = dayjs(new Date(parseInt(year, 10), index, 1));
-      let currentDate;
+    const yearDates: dayjs.Dayjs[][] = months.map((_, index) => {
+      const firstDayOfTheMonth: dayjs.Dayjs = dayjs(
+        new Date(parseInt(year, 10), index, 1)
+      );
+      let currentDate: dayjs.Dayjs;
       if (firstDayOfTheMonth.isSameOrBefore(dayjs(start))) {
         currentDate = dayjs(start);
       } else {

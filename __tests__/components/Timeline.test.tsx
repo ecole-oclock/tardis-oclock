@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import TimelineProps from 'components/Timeline/Timeline.types';
-import Timeline from 'components/Timeline';
+import TimelineProps from 'src/components/Timeline/Timeline.types';
+import Timeline from 'src/components/Timeline';
 
 describe('Timeline Component', () => {
   let props: TimelineProps;

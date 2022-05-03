@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import dayjs from 'src/utils/dayjs';
+import { useToggle } from 'src/Hooks';
 import { getDatesInArray } from 'src/utils/utils';
 import { TimelineProps, DatesInNestedArray } from './Timeline.types';
 import ToolsMenu from 'src/components/ToolsMenu';
@@ -19,12 +20,8 @@ const Timeline: React.FC<TimelineProps> = ({
   const [days, setDay] = useState<DatesInNestedArray>(
     getDatesInArray(start, interval, granularity)
   );
-  console.log(getDatesInArray('2022-02-12', 36, 'days'));
-  const daysEls = useRef([]);
-  const [showWeekend, setShowWeekend] = useState<boolean>(true);
-  const toggleWeekend = () => {
-    setShowWeekend((showWeekend) => !showWeekend);
-  };
+  const [showWeekend, toggleWeekend] = useToggle();
+
   return (
     <div>
       <ul className="timeline__container">

@@ -44,7 +44,7 @@ export default [
       commonjs(),
       typescript({
         useTsconfigDeclarationDir: true,
-        tsconfig: './tsconfig.json',
+        tsconfig: './src/tsconfig.src.json',
       }),
       babel({
         exclude: 'node_modules/**',

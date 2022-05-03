@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import TestComponentProps from 'components/TestComponent/TestComponent.types';
-import TestComponent from 'components/TestComponent';
+import TestComponentProps from 'src/components/TestComponent/TestComponent.types';
+import TestComponent from 'src/components/TestComponent';
 
 describe('Test Component', () => {
   let props: TestComponentProps;

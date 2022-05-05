@@ -58,14 +58,24 @@ export const getDatesInArray = (
       dates: yearDates,
     };
   });
-  console.log(dates);
+
   return dates;
 };
 
+/**
+ * Fonction to get a 12 items array to represent local months
+ * @returns an array of local months
+ */
 const getAllMonths = (): months => {
   return dayjs().localeData().months();
 };
 
+/**
+ * Representing all the years in an interval according to params
+ * @param startDate representing the beginning date
+ * @param endDate representing the end date
+ * @returns an array of all years in the interval between startDate and endDate
+ */
 const getAllYearsInterval = (
   startDate: dayjs.Dayjs,
   endDate: dayjs.Dayjs
@@ -79,7 +89,7 @@ const getAllYearsInterval = (
 };
 
 /**
- *
+ * Function to define if a number is odd or even
  * @param number
  * @returns true if number is odd; false if number is even
  */

@@ -44,7 +44,15 @@ export default [
       commonjs(),
       typescript({
         useTsconfigDeclarationDir: true,
-        tsconfig: './src/tsconfig.src.json',
+        tsconfig: './tsconfig.json',
+        tsconfigOverride: {
+          exclude: [
+            './node_modules/*',
+            './dist',
+            './src/stories/**/*',
+            './__tests__/**/*',
+          ],
+        },
       }),
       babel({
         exclude: 'node_modules/**',
@@ -65,7 +73,7 @@ export default [
     external: ['react', 'react-dom'],
   },
   {
-    input: 'dist/types/index.d.ts',
+    input: 'dist/types/src/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.scss$/],
     plugins: [dts()],

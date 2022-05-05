@@ -17,8 +17,8 @@ describe('Timeline Component', () => {
   });
 
   const renderComponent = () => render(<Timeline {...props} />);
-
-  it('should have class today', () => {
+  console.log(renderComponent);
+  it('should have class today on today date element', () => {
     renderComponent();
     const todayElm = document.getElementById(today);
     expect(todayElm).toHaveClass('today');

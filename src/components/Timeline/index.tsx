@@ -10,7 +10,6 @@ import './style.scss';
 
 /**
  * A timeline component build with an array of dates
-
  * @returns the main Timeline Component
  */
 const Timeline: React.FC<TimelineProps> = ({
@@ -18,21 +17,27 @@ const Timeline: React.FC<TimelineProps> = ({
   interval,
   granularity,
 }: TimelineProps) => {
+  /**
+   * Get all the days according to props to display them in DOM
+   */
   const [days, setDay] = useState<DatesInNestedArray>(
     getDatesInArray(start, interval, granularity)
   );
+  /**
+   * Adding references on each Element which represent a year, a month or a day
+   */
   const daysElms = useRef<(HTMLLIElement | null)[]>([]);
   const yearsElms = useRef<(HTMLLIElement | null)[]>([]);
   const monthsElms = useRef<(HTMLLIElement | null)[]>([]);
-  useLayoutEffect(() => {
-    console.log('useEffect YearsElms', yearsElms);
-    console.log('useEffect monthsElms', monthsElms);
-    console.log('useEffect daysElms', daysElms);
-    console.log('date test odd', parseInt(dayjs().format('ww'), 10));
-  }, [yearsElms]);
-  console.log(yearsElms);
+
+  /**
+   * Using custom hooks Toggle to show or hide weekend days
+   */
   const [showWeekend, toggleWeekend] = useToggle();
-  const focusOnToday = () => {
+  /**
+   * Focus on the element which have a date equal to today with the scrollIntoView method
+   */
+  const focusOnToday = (): void => {
     daysElms.current[dayjs().format('YYYY-MM-DD')].scrollIntoView({
       behavior: 'instant',
       inline: 'center',
@@ -122,7 +127,7 @@ const Timeline: React.FC<TimelineProps> = ({
                                         !showWeekend,
                                     })}
                                   >
-                                    {dayjs(date).format('ww')}
+                                    W{dayjs(date).format('ww')}
                                   </span>
                                   <div
                                     className={classNames(
@@ -133,21 +138,6 @@ const Timeline: React.FC<TimelineProps> = ({
                                     <span>{dayjs(date).format('ddd')}</span>
                                     <span>{dayjs(date).format('DD')}</span>
                                   </div>
-                                  <div
-                                    className={classNames('cols', {
-                                      'odd-weeks': isOdd(
-                                        parseInt(dayjs(date).format('ww'), 10)
-                                      ),
-                                      today: dayjs(date).isToday(),
-                                      weekend:
-                                        dayjs(date).weekday() === 5 ||
-                                        dayjs(date).weekday() === 6,
-                                      'weekend--hidden':
-                                        (dayjs(date).weekday() === 5 ||
-                                          dayjs(date).weekday() === 6) &&
-                                        !showWeekend,
-                                    })}
-                                  ></div>
                                 </li>
                               ))}
                           </ul>

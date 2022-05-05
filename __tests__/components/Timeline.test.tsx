@@ -29,7 +29,7 @@ describe('Timeline Component', () => {
     expect(todayElm).to;
   });
 
-  test('props.start should be the first visible day', () => {
+  test('props.start should be the first day element', () => {
     renderComponent();
     const firstDayElm = document.getElementById(props.start as string);
     const daysElms = document.getElementsByClassName('timeline__days__day');
@@ -40,22 +40,26 @@ describe('Timeline Component', () => {
     const { getByText } = renderComponent();
     const toggleWeekend = getByText('Hide Weekend');
     const weekendElms = document.getElementsByClassName('weekend');
+
+    // generate a click on the toggle weekend button
     fireEvent.click(toggleWeekend);
+
+    // after clicking weekend should be not visible and button may change is textcontent
     expect(toggleWeekend.textContent).toBe('Show Weekend');
-    // await waitFor(() => {
+
+    //generate a loop to find if each weekend element is invisible and get the good hidden classes
     for (let elm of weekendElms) {
       expect(elm).not.toBeVisible();
       expect(elm).toHaveClass('weekend weekend--hidden');
     }
-    // });
+    // Same thing in the other side : weekend should be visible
     fireEvent.click(toggleWeekend);
     expect(toggleWeekend.textContent).toBe('Hide Weekend');
-    // await waitFor(() => {
+
     for (let elm of weekendElms) {
       expect(elm).toBeVisible();
       expect(elm).toHaveClass('weekend');
       expect(elm).not.toHaveClass('weekend--hidden');
     }
-    // });
   });
 });

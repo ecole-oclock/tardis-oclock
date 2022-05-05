@@ -13,12 +13,13 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
+    "suppressImplicitAnyIndexErrors": true,
     "declarationDir": "dist/types",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
       "src/*": ["*"]
     }
   },
-  // "include": ["src/**/*"],
-  "exclude": ["node_modules/*", "dist", "src/stories/**/*"]
+
+  "exclude": ["node_modules/*", "dist", "src/**/*"]
 }

@@ -77,3 +77,16 @@ const getAllYearsInterval = (
   }
   return years;
 };
+
+/**
+ *
+ * @param number
+ * @returns true if number is odd; false if number is even
+ */
+export const isOdd = (number: number): boolean => {
+  if (number % 2 === 0) {
+    return false;
+  } else {
+    return true;
+  }
+};

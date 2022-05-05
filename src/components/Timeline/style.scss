@@ -25,14 +25,17 @@
   &__months {
     display: flex;
     flex-wrap: nowrap;
+
     &--info {
       // border-bottom: 1px solid vars.$primaryColor;
       // border-right: 1px solid vars.$primaryColor;
       text-align: left;
+      margin-bottom: 1.5rem;
       //  padding: 0.2rem;
       & span {
         position: sticky;
         left: 20px;
+        margin-right: 2rem;
       }
     }
   }
@@ -42,18 +45,25 @@
     flex-wrap: nowrap;
 
     &--info {
-      width: 1.5rem;
-      padding: 0.2rem;
-      margin: 0.2rem;
-      border-radius: 50%;
-      color: vars.$lightColor;
-      background-color: vars.$primaryColor;
+      // width: 1.5rem;
+      // padding: 0.3rem;
+      // margin: 0.2rem;
+      // border-radius: 50%;
+      // color: vars.$lightColor;
+      // background-color: vars.$primaryColor;
+      border-left: 1px solid vars.$primaryColor;
       font-size: 0.8rem;
+      position: absolute;
+      top: -0.7rem;
+      left: 0;
       &--hidden {
         visibility: hidden;
         width: 1.5rem;
         padding: 0.2rem;
         margin: 0.2rem;
+        position: absolute;
+        top: -1rem;
+        left: 0;
       }
       &--remove {
         display: none;
@@ -66,8 +76,8 @@
     &__columns {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      overflow-y: hidden;
+
+      position: relative;
     }
     &--info {
       padding: 0.2rem;
@@ -79,9 +89,11 @@
     }
   }
 }
-
+.odd-weeks {
+  background-color: vars.$lightColor;
+}
 .today {
-  background-color: orange;
+  background-color: vars.$todayColor;
 }
 .weekend {
   background-color: vars.$primaryColor--darker;
@@ -90,8 +102,9 @@
     display: none;
   }
 }
+
 .cols {
-  height: 1000px;
+  height: 87vh;
 
   border-right: 1px solid vars.$primaryColor;
   overflow-y: hidden;

@@ -14,7 +14,6 @@ module.exports = {
     [].push.apply(config.resolve.plugins, [
       new TsconfigPathsPlugin({
         extensions: config.resolve.extensions,
-        configFile: path.resolve(__dirname, '../src/tsconfig.src.json'),
       }),
     ]);
     config.module.rules.push({

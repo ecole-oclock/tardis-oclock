@@ -23,9 +23,15 @@
     }
   }
   &__months {
-    display: flex;
-    flex-wrap: nowrap;
-
+    &__container {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    &__month {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
     &--info {
       // border-bottom: 1px solid vars.$primaryColor;
       // border-right: 1px solid vars.$primaryColor;
@@ -40,10 +46,6 @@
     }
   }
   &__weeks {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-
     &--info {
       font-size: 0.8rem;
       position: absolute;
@@ -64,9 +66,11 @@
     }
   }
   &__days {
-    display: flex;
+    &__container {
+      display: flex;
+    }
 
-    &__columns {
+    &__day {
       display: flex;
       flex-direction: column;
 
@@ -95,7 +99,7 @@
     display: none;
   }
 }
-
+// Future childs for Timeline component => here just for testing
 .cols {
   height: 87vh;
 

@@ -33,7 +33,7 @@ const Timeline: React.FC<TimelineProps> = ({
   /**
    * Using custom hooks Toggle to show or hide weekend days
    */
-  const [showWeekend, toggleWeekend] = useToggle();
+  const [isShowWeekend, toggleWeekend] = useToggle();
   /**
    * Focus on the element which have a date equal to today with the scrollIntoView method
    */
@@ -44,6 +44,12 @@ const Timeline: React.FC<TimelineProps> = ({
       block: 'start',
     });
   };
+  /**
+   * First render will focus on the today element
+   */
+  useEffect(() => {
+    focusOnToday();
+  }, [daysElms.current[dayjs().format('YYYY-MM-DD')]]);
   return (
     <div>
       <Header handleClickToday={focusOnToday} />
@@ -63,7 +69,7 @@ const Timeline: React.FC<TimelineProps> = ({
                   <span>{year}</span>
                 </div>
 
-                <ul className="timeline__months">
+                <ul className="timeline__months__container">
                   {dates.map(
                     (month, monthIndex: number) =>
                       month[0] && (
@@ -71,7 +77,7 @@ const Timeline: React.FC<TimelineProps> = ({
                           key={`${dayjs()
                             .month(monthIndex)
                             .format('MM')}${year}`}
-                          className="timeline__weeks"
+                          className="timeline__months__month"
                           id={dayjs().month(monthIndex).format('YYYY-MM')}
                           ref={(elm) => {
                             monthsElms.current[
@@ -87,26 +93,23 @@ const Timeline: React.FC<TimelineProps> = ({
                             </span>
                           </div>
 
-                          <ul className="timeline__days">
+                          <ul className="timeline__days__container">
                             {month[0] &&
                               month.map((date) => (
                                 <li
-                                  className={classNames(
-                                    'timeline__days__columns',
-                                    {
-                                      'odd-weeks': isOdd(
-                                        parseInt(dayjs(date).format('ww'), 10)
-                                      ),
-                                      today: dayjs(date).isToday(),
-                                      weekend:
-                                        dayjs(date).weekday() === 5 ||
-                                        dayjs(date).weekday() === 6,
-                                      'weekend--hidden':
-                                        (dayjs(date).weekday() === 5 ||
-                                          dayjs(date).weekday() === 6) &&
-                                        !showWeekend,
-                                    }
-                                  )}
+                                  className={classNames('timeline__days__day', {
+                                    'odd-weeks': isOdd(
+                                      parseInt(dayjs(date).format('ww'), 10)
+                                    ),
+                                    today: dayjs(date).isToday(),
+                                    weekend:
+                                      dayjs(date).weekday() === 5 ||
+                                      dayjs(date).weekday() === 6,
+                                    'weekend--hidden':
+                                      (dayjs(date).weekday() === 5 ||
+                                        dayjs(date).weekday() === 6) &&
+                                      !isShowWeekend,
+                                  })}
                                   key={date.format('YYYY-MM-DD')}
                                   ref={(elm) => {
                                     daysElms.current[
@@ -114,6 +117,11 @@ const Timeline: React.FC<TimelineProps> = ({
                                     ] = elm;
                                   }}
                                   id={date.format('YYYY-MM-DD')}
+                                  hidden={
+                                    (dayjs(date).weekday() === 5 ||
+                                      dayjs(date).weekday() === 6) &&
+                                    !isShowWeekend
+                                  }
                                 >
                                   <span
                                     className={classNames({
@@ -124,8 +132,9 @@ const Timeline: React.FC<TimelineProps> = ({
                                       'weekend--hidden':
                                         (dayjs(date).weekday() === 5 ||
                                           dayjs(date).weekday() === 6) &&
-                                        !showWeekend,
+                                        !isShowWeekend,
                                     })}
+                                    hidden={dayjs(date).weekday() !== 0}
                                   >
                                     W{dayjs(date).format('ww')}
                                   </span>
@@ -149,7 +158,7 @@ const Timeline: React.FC<TimelineProps> = ({
             )
         )}
       </ul>
-      <ToolsMenu toggleWeekend={toggleWeekend} />
+      <ToolsMenu toggleWeekend={toggleWeekend} isShowWeekend={isShowWeekend} />
     </div>
   );
 };

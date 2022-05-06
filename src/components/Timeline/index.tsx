@@ -14,7 +14,7 @@ import TimelineYears from './TimelineYears';
 /*-------------------------------Import Modules------------------------------------------------*/
 import dayjs from 'src/utils/dayjs';
 import { useToggle } from 'src/Hooks';
-import { getDatesInArray, isOdd } from 'src/utils/utils';
+import { getDatesInArray } from 'src/utils/utils';
 
 import './style.scss';
 
@@ -68,11 +68,12 @@ const Timeline: React.FC<TimelineProps> = ({
         {days.map(
           ({ year, dates }, yearIndex) =>
             dates[yearIndex] && (
-              <TimelineYears year={year} yearsElms={yearsElms}>
+              <TimelineYears key={year} year={year} yearsElms={yearsElms}>
                 {dates.map(
                   (month, monthIndex: number) =>
                     month[0] && (
                       <TimelineMonths
+                        key={`${dayjs().month(monthIndex).format('MM')}${year}`}
                         monthIndex={monthIndex}
                         year={year}
                         monthsElms={monthsElms}
@@ -80,6 +81,7 @@ const Timeline: React.FC<TimelineProps> = ({
                         {month[0] &&
                           month.map((date) => (
                             <TimelineDays
+                              key={date.format('YYYY-MM-DD')}
                               date={date}
                               isShowWeekend={isShowWeekend}
                               daysElms={daysElms}

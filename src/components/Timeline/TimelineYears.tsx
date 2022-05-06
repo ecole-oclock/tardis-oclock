@@ -7,7 +7,6 @@ const TimelineYears: React.FC<TimelineYearsProps> = ({
 }) => {
   return (
     <li
-      key={year}
       ref={(elm) => {
         yearsElms.current[year] = elm;
       }}

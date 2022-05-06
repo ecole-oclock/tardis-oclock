@@ -10,7 +10,6 @@ const TimelineMonths: React.FC<TimelineMonthsProps> = ({
 }) => {
   return (
     <li
-      key={`${dayjs().month(monthIndex).format('MM')}${year}`}
       className="timeline__months__month"
       id={dayjs().month(monthIndex).format('YYYY-MM')}
       ref={(elm) => {

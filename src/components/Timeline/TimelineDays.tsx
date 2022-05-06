@@ -19,7 +19,6 @@ const TimelineDays: React.FC<TimelineDaysProps> = ({
           (dayjs(date).weekday() === 5 || dayjs(date).weekday() === 6) &&
           !isShowWeekend,
       })}
-      key={date.format('YYYY-MM-DD')}
       ref={(elm) => {
         daysElms.current[date.format('YYYY-MM-DD')] = elm;
       }}

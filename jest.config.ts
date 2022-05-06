@@ -7,6 +7,7 @@ const config: Config.InitialOptions = {
   testPathIgnorePatterns: ['node_modules/'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.mdx$': '@storybook/addon-docs/jest-transform-mdx',
   },
   testMatch: ['**/?(*.)+(spec|test)?(s).+(ts|tsx)'],
   moduleNameMapper: {

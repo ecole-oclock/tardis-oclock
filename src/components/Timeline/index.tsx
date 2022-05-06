@@ -49,11 +49,13 @@ const Timeline: React.FC<TimelineProps> = ({
    * Focus on the element which have a date equal to today with the scrollIntoView method
    */
   const focusOnToday = (): void => {
-    daysElms.current[dayjs().format('YYYY-MM-DD')].scrollIntoView({
-      behavior: 'instant',
-      inline: 'center',
-      block: 'start',
-    });
+    if (daysElms.current[dayjs().format('YYYY-MM-DD')]) {
+      daysElms.current[dayjs().format('YYYY-MM-DD')].scrollIntoView({
+        behavior: 'instant',
+        inline: 'center',
+        block: 'start',
+      });
+    }
   };
   /**
    * First render will focus on the today element
@@ -62,7 +64,7 @@ const Timeline: React.FC<TimelineProps> = ({
     focusOnToday();
   }, [daysElms.current[dayjs().format('YYYY-MM-DD')]]);
   return (
-    <div>
+    <div className="tardis__container">
       <Header handleClickToday={focusOnToday} />
       <ul className="timeline__container">
         {days.map(

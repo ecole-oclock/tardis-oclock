@@ -1,11 +1,21 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+/*-------------------------------Import Types--------------------------------------------------*/
+import {
+  TimelineProps,
+  DatesInNestedArray,
+  referencesLi,
+} from './Timeline.types';
+/*-------------------------------Import Components---------------------------------------------*/
+import ToolsMenu from 'src/components/ToolsMenu';
+import Header from 'src/components/Header';
+import TimelineDays from 'src/components/Timeline/TimelineDays';
+import TimelineMonths from 'src/components/Timeline/TimelineMonths';
+import TimelineYears from './TimelineYears';
+/*-------------------------------Import Modules------------------------------------------------*/
 import dayjs from 'src/utils/dayjs';
 import { useToggle } from 'src/Hooks';
 import { getDatesInArray, isOdd } from 'src/utils/utils';
-import { TimelineProps, DatesInNestedArray } from './Timeline.types';
-import ToolsMenu from 'src/components/ToolsMenu';
-import Header from 'src/components/Header';
-import classNames from 'classnames';
+
 import './style.scss';
 
 /**
@@ -23,12 +33,13 @@ const Timeline: React.FC<TimelineProps> = ({
   const [days, setDay] = useState<DatesInNestedArray>(
     getDatesInArray(start, interval, granularity)
   );
+
   /**
    * Adding references on each Element which represent a year, a month or a day
    */
-  const daysElms = useRef<(HTMLLIElement | null)[]>([]);
-  const yearsElms = useRef<(HTMLLIElement | null)[]>([]);
-  const monthsElms = useRef<(HTMLLIElement | null)[]>([]);
+  const daysElms = useRef<referencesLi[]>([]);
+  const yearsElms = useRef<referencesLi[]>([]);
+  const monthsElms = useRef<referencesLi[]>([]);
 
   /**
    * Using custom hooks Toggle to show or hide weekend days
@@ -57,104 +68,27 @@ const Timeline: React.FC<TimelineProps> = ({
         {days.map(
           ({ year, dates }, yearIndex) =>
             dates[yearIndex] && (
-              <li
-                key={year}
-                ref={(elm) => {
-                  yearsElms.current[year] = elm;
-                }}
-                id={`year${year}`}
-                className="timeline__years"
-              >
-                <div className="timeline__years--info">
-                  <span>{year}</span>
-                </div>
-
-                <ul className="timeline__months__container">
-                  {dates.map(
-                    (month, monthIndex: number) =>
-                      month[0] && (
-                        <li
-                          key={`${dayjs()
-                            .month(monthIndex)
-                            .format('MM')}${year}`}
-                          className="timeline__months__month"
-                          id={dayjs().month(monthIndex).format('YYYY-MM')}
-                          ref={(elm) => {
-                            monthsElms.current[
-                              `${dayjs()
-                                .month(monthIndex)
-                                .format('MMMM')}${year}`
-                            ] = elm;
-                          }}
-                        >
-                          <div className="timeline__months--info">
-                            <span>
-                              {dayjs().month(monthIndex).format('MMMM')}
-                            </span>
-                          </div>
-
-                          <ul className="timeline__days__container">
-                            {month[0] &&
-                              month.map((date) => (
-                                <li
-                                  className={classNames('timeline__days__day', {
-                                    'odd-weeks': isOdd(
-                                      parseInt(dayjs(date).format('ww'), 10)
-                                    ),
-                                    today: dayjs(date).isToday(),
-                                    weekend:
-                                      dayjs(date).weekday() === 5 ||
-                                      dayjs(date).weekday() === 6,
-                                    'weekend--hidden':
-                                      (dayjs(date).weekday() === 5 ||
-                                        dayjs(date).weekday() === 6) &&
-                                      !isShowWeekend,
-                                  })}
-                                  key={date.format('YYYY-MM-DD')}
-                                  ref={(elm) => {
-                                    daysElms.current[
-                                      date.format('YYYY-MM-DD')
-                                    ] = elm;
-                                  }}
-                                  id={date.format('YYYY-MM-DD')}
-                                  hidden={
-                                    (dayjs(date).weekday() === 5 ||
-                                      dayjs(date).weekday() === 6) &&
-                                    !isShowWeekend
-                                  }
-                                >
-                                  <span
-                                    className={classNames({
-                                      'timeline__weeks--info':
-                                        dayjs(date).weekday() === 0,
-                                      'timeline__weeks--info--hidden':
-                                        dayjs(date).weekday() !== 0,
-                                      'weekend--hidden':
-                                        (dayjs(date).weekday() === 5 ||
-                                          dayjs(date).weekday() === 6) &&
-                                        !isShowWeekend,
-                                    })}
-                                    hidden={dayjs(date).weekday() !== 0}
-                                  >
-                                    W{dayjs(date).format('ww')}
-                                  </span>
-                                  <div
-                                    className={classNames(
-                                      'timeline__days--info',
-                                      {}
-                                    )}
-                                  >
-                                    <span>{dayjs(date).format('ddd')}</span>
-                                    <span>{dayjs(date).format('DD')}</span>
-                                  </div>
-                                </li>
-                              ))}
-                          </ul>
-                        </li>
-                      )
-                  )}
-                </ul>
-              </li>
+              <TimelineYears year={year} yearsElms={yearsElms}>
+                {dates.map(
+                  (month, monthIndex: number) =>
+                    month[0] && (
+                      <TimelineMonths
+                        monthIndex={monthIndex}
+                        year={year}
+                        monthsElms={monthsElms}
+                      >
+                        {month[0] &&
+                          month.map((date) => (
+                            <TimelineDays
+                              date={date}
+                              isShowWeekend={isShowWeekend}
+                              daysElms={daysElms}
+                            />
+                          ))}
+                      </TimelineMonths>
+                    )
+                )}
+              </TimelineYears>
             )
         )}
       </ul>

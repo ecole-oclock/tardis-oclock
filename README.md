@@ -17,7 +17,7 @@ npm i -D tardis-oclock
 Then, import components and styles to your application
 
 ```js
-import { TestComponent, AnotherComponent } from 'tardis-oclock';
+import { Timeline } from 'tardis-oclock';
 import 'tardis-oclock/dist/styles.css';
 ```
 

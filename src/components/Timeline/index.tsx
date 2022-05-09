@@ -19,8 +19,15 @@ import { getDatesInArray } from 'src/utils/utils';
 import './style.scss';
 
 /**
- * A timeline component build with an array of dates
- * @returns the main Timeline Component
+ * A timeline component build with an array of dates following props start which is a date, and adding interval and granularity following dayjs method dayjs(start).add(interval, granularity)
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * <Timeline start={} interval={} granularity={} />
+ * ```
+ *
+ *
  */
 const Timeline: React.FC<TimelineProps> = ({
   start,

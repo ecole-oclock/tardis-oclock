@@ -14,6 +14,7 @@ const ToolsMenu: React.FC<ToolsMenuProps> = ({
       <button onClick={toggleWeekend}>
         {isShowWeekend ? 'Hide' : 'Show'} Weekend
       </button>
+      <input type="range" className="tools-menu__granularity-range" />
     </div>
   );
 };

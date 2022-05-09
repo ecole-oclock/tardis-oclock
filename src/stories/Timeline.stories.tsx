@@ -1,15 +1,13 @@
 import React from 'react';
 import Timeline from 'src/components/Timeline';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { TimelineProps } from 'src/components/Timeline/Timeline.types';
 import dayjs from 'src/utils/dayjs';
 export default {
-  title: 'Timeline',
+  title: 'UI/Timeline',
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: {
     start: {
       control: false,
-      description: `a string matching the 'YYY-MM-DD' pattern`,
     },
     interval: {
       control: {
@@ -29,6 +27,7 @@ export default {
       ],
       control: { type: 'select' },
     },
+    onClick: { action: 'clicked' },
   },
 } as ComponentMeta<typeof Timeline>;
 

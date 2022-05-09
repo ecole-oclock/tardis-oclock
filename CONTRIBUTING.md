@@ -51,8 +51,38 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 //TODO création d'un template de pull request + documentation du fork du projet
 
+### Develop library on local
+
+While developping this library on local, you may run two projects. The first one is the library project, the second one is an app importing the library with npm link :
+
+Open a terminal on the root of your library folder :
+
+```bash
+npm run build
+cd dist
+npm link
+```
+
+Then, open a new terminal on the root of your application folder :
+
+```bash
+npm link tardis-oclock
+```
+
+Finally, according to the [official React documentation](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react), to avoid React running two instances (one in the app, and the other one in the lib), you may link the app dependencies to your library :
+
+Open a terminal on the root of your library folder :
+
+```bash
+npm link ../paste_to_your_app/node_modules/react
+```
+
 ---
 
 ## Licence
 
 By contributing your code to the [tardis-oclock](https://github.com/ecole-oclock/tardis-oclock) Github repository, you agree to licence your contribution under [MIT Licence](./LICENCE)
+
+```
+
+```

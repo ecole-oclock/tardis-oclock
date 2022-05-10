@@ -5,6 +5,7 @@ import { TimelineMonthsProps } from './Timeline.types';
 const TimelineMonths: React.FC<TimelineMonthsProps> = ({
   monthIndex,
   year,
+  content,
   monthsElms,
   children,
 }) => {
@@ -19,7 +20,7 @@ const TimelineMonths: React.FC<TimelineMonthsProps> = ({
       }}
     >
       <div className="timeline__months--info">
-        <span>{dayjs().month(monthIndex).format('MMMM')}</span>
+        {content && <span>{content}</span>}
       </div>
 
       <ul className="timeline__days__container">{children}</ul>

@@ -1,9 +1,9 @@
 import React from 'react';
 import Timeline from 'src/components/Timeline';
+import { Meta } from '@storybook/react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import dayjs from 'src/utils/dayjs';
 export default {
-  title: 'UI/Timeline',
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: {
     start: {
@@ -27,9 +27,8 @@ export default {
       ],
       control: { type: 'select' },
     },
-    onClick: { action: 'clicked' },
   },
-} as ComponentMeta<typeof Timeline>;
+} as Meta;
 
 const TimelineTemplate: ComponentStory<typeof Timeline> = ({
   start,

@@ -8,6 +8,7 @@ const TimelineDays: React.FC<TimelineDaysProps> = ({
   date,
   isShowWeekend,
   daysElms,
+  content,
 }) => {
   return (
     <li
@@ -40,9 +41,13 @@ const TimelineDays: React.FC<TimelineDaysProps> = ({
       >
         W{dayjs(date).format('ww')}
       </span>
-      <div className={classNames('timeline__days--info', {})}>
-        <span>{dayjs(date).format('ddd')}</span>
-        <span>{dayjs(date).format('DD')}</span>
+      <div className="timeline__days--info">
+        {content && (
+          <>
+            <span>{content[0]}</span>
+            <span>{content[1]}</span>
+          </>
+        )}
       </div>
     </li>
   );

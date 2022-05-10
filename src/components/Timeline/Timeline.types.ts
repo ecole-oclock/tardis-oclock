@@ -23,6 +23,7 @@ export interface TimelineDaysProps {
   date: Dayjs;
   isShowWeekend: boolean;
   daysElms: React.MutableRefObject<referencesLi[]>;
+  content?: string[];
 }
 /* Props for the sub Timeline Component : TimelineMonths */
 export interface TimelineMonthsProps {
@@ -30,10 +31,12 @@ export interface TimelineMonthsProps {
   year: string;
   monthsElms: React.MutableRefObject<referencesLi[]>;
   children: React.ReactNode;
+  content?: string;
 }
 /* Props for the sub Timeline Component : TimelineYears */
 export interface TimelineYearsProps {
   year: string;
+  content?: string;
   yearsElms: React.MutableRefObject<referencesLi[]>;
   children: React.ReactNode;
 }

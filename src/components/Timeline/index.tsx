@@ -19,6 +19,7 @@ import { getDatesInArray } from 'src/utils/utils';
 import './style.scss';
 
 /**
+ *
  * A timeline component build with an array of dates following props start which is a date, and adding interval and granularity following dayjs method dayjs(start).add(interval, granularity)
  *
  * ### Usage
@@ -77,7 +78,12 @@ const Timeline: React.FC<TimelineProps> = ({
         {days.map(
           ({ year, dates }, yearIndex) =>
             dates[yearIndex] && (
-              <TimelineYears key={year} year={year} yearsElms={yearsElms}>
+              <TimelineYears
+                key={year}
+                content={year}
+                year={year}
+                yearsElms={yearsElms}
+              >
                 {dates.map(
                   (month, monthIndex: number) =>
                     month[0] && (
@@ -86,6 +92,7 @@ const Timeline: React.FC<TimelineProps> = ({
                         monthIndex={monthIndex}
                         year={year}
                         monthsElms={monthsElms}
+                        content={dayjs().month(monthIndex).format('MMMM')}
                       >
                         {month[0] &&
                           month.map((date) => (
@@ -94,6 +101,10 @@ const Timeline: React.FC<TimelineProps> = ({
                               date={date}
                               isShowWeekend={isShowWeekend}
                               daysElms={daysElms}
+                              content={[
+                                dayjs(date).format('ddd'),
+                                dayjs(date).format('DD'),
+                              ]}
                             />
                           ))}
                       </TimelineMonths>

@@ -2,6 +2,7 @@ import React from 'react';
 import { TimelineYearsProps } from './Timeline.types';
 const TimelineYears: React.FC<TimelineYearsProps> = ({
   year,
+  content,
   yearsElms,
   children,
 }) => {
@@ -14,7 +15,7 @@ const TimelineYears: React.FC<TimelineYearsProps> = ({
       className="timeline__years"
     >
       <div className="timeline__years--info">
-        <span>{year}</span>
+        {content && <span>{content}</span>}
       </div>
 
       <ul className="timeline__months__container">{children}</ul>

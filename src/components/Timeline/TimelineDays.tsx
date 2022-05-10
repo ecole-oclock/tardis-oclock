@@ -44,6 +44,7 @@ const TimelineDays: React.FC<TimelineDaysProps> = ({
       <div className="timeline__days--info">
         {content && (
           <>
+            {/* Content for TimelineDay is an array with two items: First is the abbreviation day, second is the day number of the month */}
             <span>{content[0]}</span>
             <span>{content[1]}</span>
           </>

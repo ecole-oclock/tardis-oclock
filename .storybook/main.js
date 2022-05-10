@@ -9,22 +9,12 @@ module.exports = {
     '@storybook/addon-interactions',
     '@storybook/addon-postcss',
   ],
-  typescript: {
-    check: false,
-    checkOptions: {},
-    reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop) =>
-        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
-    },
-  },
   framework: '@storybook/react',
   core: {
     builder: '@storybook/builder-webpack5',
   },
   webpackFinal: async (config) => {
-    config.resolve.extensions.push('.ts', '.tsx', '.mdx');
+    // config.resolve.extensions.push('.ts', '.tsx');
     config.resolve.plugins = [
       ...(config.resolve.plugins || []),
       new TsconfigPathsPlugin({
@@ -37,14 +27,14 @@ module.exports = {
       include: path.resolve(__dirname, '../'),
     });
 
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      exclude: /node_modules/,
-      loader: require.resolve('babel-loader'),
-      options: {
-        presets: [['react-app', { flow: false, typescript: true }]],
-      },
-    });
+    // config.module.rules.push({
+    //   test: /\.(ts|tsx)$/,
+    //   exclude: /node_modules/,
+    //   loader: require.resolve('babel-loader'),
+    //   options: {
+    //     presets: [['react-app', { flow: false, typescript: true }]],
+    //   },
+    // });
 
     return config;
   },

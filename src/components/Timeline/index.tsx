@@ -114,6 +114,7 @@ const Timeline: React.FC<TimelineProps> = ({
             )
         )}
       </ul>
+
       <ToolsMenu toggleWeekend={toggleWeekend} isShowWeekend={isShowWeekend} />
     </div>
   );

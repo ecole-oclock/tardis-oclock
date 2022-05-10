@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 // Hook
-// Parameter is the boolean, with default "false" value
+// Parameter is the boolean, with default "true" value
 export const useToggle = (
   initialState: boolean = true
 ): [boolean, React.MouseEventHandler] => {

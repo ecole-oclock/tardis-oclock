@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface ToolsMenuProps {
-  toggleWeekend: React.MouseEventHandler;
+  toggleWeekend: React.ChangeEventHandler;
   isShowWeekend: boolean;
 }
 

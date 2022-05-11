@@ -2,7 +2,11 @@ const path = require('path');
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  // L'ordre est important pour l'affichage
+  stories: [
+    '../src/**/*.stories.mdx',
+    '../src/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+  ],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
@@ -10,9 +14,6 @@ module.exports = {
     '@storybook/addon-postcss',
   ],
   framework: '@storybook/react',
-  core: {
-    builder: '@storybook/builder-webpack5',
-  },
   webpackFinal: async (config) => {
     // config.resolve.extensions.push('.ts', '.tsx');
     config.resolve.plugins = [

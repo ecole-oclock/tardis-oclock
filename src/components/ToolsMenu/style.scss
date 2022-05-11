@@ -1,9 +1,9 @@
+@use 'src/scss/vars';
+
 .tools-menu {
   margin: auto;
   position: absolute;
-
-  bottom: 1rem;
-
+  bottom: 0rem;
   right: 1rem;
   width: 80px;
   height: 80px;
@@ -12,7 +12,7 @@
   font-size: 26px;
   &__open-button,
   &__items {
-    background: #eeeeee;
+    background: vars.$lightColor;
     border-radius: 100%;
     width: 35px;
     height: 35px;
@@ -20,7 +20,6 @@
     position: absolute;
     color: #ffffff;
     text-align: center;
-    // line-height: 80px;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     -webkit-transition: -webkit-transform ease-out 200ms;
@@ -28,12 +27,22 @@
     transition: transform ease-out 200ms;
     transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
   }
-
+  &__items {
+    background: transparent;
+    -webkit-transition-duration: 180ms;
+    transition-duration: 180ms;
+    border: inherit;
+    box-shadow: inherit;
+    box-shadow: vars.$boxShadow;
+    text-shadow: vars.$textShadow;
+    transform: translate3d(0, 0, 0);
+    transition: background-color 0.3s, transform 0.3s;
+  }
   &__lines {
     width: 20px;
     height: 3px;
     border-radius: 15px;
-    background: #596778;
+    background: vars.$primaryColor;
     display: block;
     position: absolute;
     top: 50%;
@@ -67,7 +76,7 @@
     -webkit-transform: scale(1.05, 1.05) translate3d(0, 0, 0);
     transform: scale(1.05, 1.05) translate3d(0, 0, 0);
     cursor: pointer;
-    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+    box-shadow: vars.$boxShadow;
     &:hover {
       -webkit-transform: scale(1.2, 1.2) translate3d(0, 0, 0);
       transform: scale(1.2, 1.2) translate3d(0, 0, 0);
@@ -98,46 +107,52 @@
         }
       }
       & ~ .tools-menu__items {
+        border-radius: vars.$borderRadius;
+        background-color: vars.$primaryColor;
         -webkit-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
         transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
-
+        &:hover {
+          background-color: vars.$primaryColor--darker;
+        }
         &:nth-child(2) {
-          transition-duration: 180ms;
-          -webkit-transition-duration: 180ms;
+          transition-duration: 100ms;
+          -webkit-transition-duration: 100ms;
           -webkit-transform: translate3d(-50px, 0px, 0);
           transform: translate3d(-50px, 0px, 0);
-          background-color: #669ae1;
-          border-radius: 5px;
+          transition: background-color 0.3s, transform 0.3s;
+          &:hover {
+            -webkit-transform: scale(1.05, 1.05)
+              translate3d(calc(-50px / 1.05), 0, 0);
+            transform: scale(1.05, 1.05) translate3d(calc(-50px / 1.05), 0, 0);
+          }
         }
         &:nth-child(3) {
-          transition-duration: 180ms;
-          -webkit-transition-duration: 180ms;
-          -webkit-transform: translate3d(0px, -50px, 0);
-          transform: translate3d(0px, -50px, 0);
-          background-color: #fe4365;
+          width: auto;
+          transition-duration: 310ms;
+          -webkit-transition-duration: 310ms;
+          -webkit-transform: translate3d(-25px, -50px, 0);
+          transform: translate3d(-25px, -50px, 0);
+          transition: background-color 0.3s, transform 0.3s;
+
+          &:hover {
+            -webkit-transform: scale(1.05, 1.05)
+              translate3d(calc(-25px / 1.05), calc(-50px / 1.05), 0);
+            transform: scale(1.05, 1.05)
+              translate3d(calc(-25px / 1.05), calc(-50px / 1.05), 0);
+          }
         }
         &:nth-child(4) {
-          transition-duration: 280ms;
-          -webkit-transition-duration: 280ms;
-          -webkit-transform: translate3d(50px, 0px, 0);
+          transition-duration: 210ms;
+          -webkit-transition-duration: 210ms;
+          -webkit-transform: translate3d(50px, 0, 0);
           transform: translate3d(50px, 0px, 0);
-          background-color: #fc913a;
+          &:hover {
+            -webkit-transform: scale(1.05, 1.05)
+              translate3d(calc(50px / 1.05), 0, 0);
+            transform: scale(1.05, 1.05) translate3d(calc(50px / 1.05), 0, 0);
+          }
         }
       }
-    }
-  }
-  &__items {
-    -webkit-transition-duration: 180ms;
-    transition-duration: 180ms;
-    border: inherit;
-    box-shadow: inherit;
-    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
-    &:hover {
-      background-color: #eeeeee;
-      color: #3290b1;
-      -webkit-transform: scale(1.2, 1.2);
-      transform: scale(1.2, 1.2);
     }
   }
 }

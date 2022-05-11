@@ -4,8 +4,8 @@ import { ToolsMenuProps } from './ToolsMenu.types';
 import { useToggle } from 'src/Hooks';
 import './style.scss';
 import classNames from 'classnames';
-import ToggleSwitch from './ToggleSwitch';
-import Tooltip from 'src/components/Tooltip';
+
+import Button from 'src/components/Button';
 /**
  * Tools Menu is a component containing the Timeline Tools (Show/hide Weekends, Granularity View)
  */
@@ -30,16 +30,21 @@ const ToolsMenu: React.FC<ToolsMenuProps> = ({
         <span className="tools-menu__lines tools-menu__lines--second"></span>
         <span className="tools-menu__lines tools-menu__lines--third"></span>
       </div>
-      <button className="tools-menu__items">
-        {isMenuOpen && (
-          <Tooltip content={`${isShowWeekend ? 'Hide' : 'Show'} Weekends`}>
-            <ToggleSwitch toggle={isShowWeekend} setToggle={toggleWeekend} />
-          </Tooltip>
-        )}
-      </button>
-      <button className="tools-menu__items"></button>
-
-      <button className="tools-menu__items"></button>
+      <Button
+        handleClick={() => console.log('test button 1')}
+        customClasses="tools-menu__items"
+      />
+      <Button
+        handleClick={toggleWeekend}
+        customClasses="tools-menu__items"
+        content={
+          isMenuOpen ? (isShowWeekend ? 'Hide weekends' : 'Show weekends') : ''
+        }
+      />
+      <Button
+        handleClick={() => console.log('test button 2')}
+        customClasses="tools-menu__items"
+      />
     </nav>
   );
 };

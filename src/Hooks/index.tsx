@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react';
 // Parameter is the boolean, with default "true" value
 export const useToggle = (
   initialState: boolean = true
-): [boolean, () => void] => {
+): [boolean, React.MouseEventHandler] => {
   // Initialize the state
   const [state, setState] = useState<boolean>(initialState);
   // Define and memorize toggler function in case we pass down the comopnent,

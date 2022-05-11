@@ -1,5 +1,6 @@
 .tooltip-container {
   position: relative;
+  z-index: 9999;
 }
 
 .tooltip-box {
@@ -8,7 +9,8 @@
   color: #fff;
   padding: 5px;
   border-radius: 5px;
-  top: calc(100% + 5px);
+  bottom: calc(100% + 5px);
+  left: calc(-50% + 5px);
   display: none;
 }
 
@@ -18,7 +20,8 @@
 
 .tooltip-arrow {
   position: absolute;
-  top: -10px;
+  bottom: -10px;
+  transform: rotate(180deg);
   left: 50%;
   border-width: 5px;
   border-style: solid;

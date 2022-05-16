@@ -22,6 +22,7 @@ const ToolsMenu: React.FC<ToolsMenuProps> = ({
     <nav className="tools-menu">
       <div
         onClick={setIsMenuOpen}
+        id="tools-menu-button"
         className={classNames('tools-menu__open-button', {
           'tools-menu--open': isMenuOpen,
         })}

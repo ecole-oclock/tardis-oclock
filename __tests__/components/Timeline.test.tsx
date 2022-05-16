@@ -3,6 +3,7 @@ import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import dayjs from 'src/utils/dayjs';
 import { TimelineProps } from 'src/components/Timeline/Timeline.types';
 import Timeline from 'src/components/Timeline';
+import ToolsMenu from 'src/components/ToolsMenu';
 
 // declare this variable to access the today date
 const today = dayjs().format('YYYY-MM-DD');
@@ -35,29 +36,34 @@ describe('Timeline Component', () => {
     expect(daysElms.item(0)).toBe(firstDayElm);
   });
 
-  /*Tests à reprendre suite à changement de la gestion du bouton toggle weekend
-
   test('toggling weekend should change textContent button', async () => {
-    const { getByText,  } = renderComponent();
-    const toggleWeekend = getByText('Hide Weekend');
+    const { getByText } = renderComponent();
+    // We want to test with the tools Menu open
+    const toolsMenuButton = document.getElementById('tools-menu-button');
+    if (toolsMenuButton) fireEvent.click(toolsMenuButton);
+
+    const toggleWeekend = getByText('Hide weekends');
 
     // generate a click on the toggle weekend button to hide weekends days
     fireEvent.click(toggleWeekend);
 
     // after clicking, button may change is textcontent
-    expect(toggleWeekend.textContent).toBe('Show Weekend');
+    expect(toggleWeekend.textContent).toBe('Show weekends');
 
     // Same thing in the other side :
     // generate a click on the toggle weekend button to show weekends days
     fireEvent.click(toggleWeekend);
 
     // after clicking, button may change is textcontent
-    expect(toggleWeekend.textContent).toBe('Hide Weekend');
+    expect(toggleWeekend.textContent).toBe('Hide weekends');
   });
 
   test('toggling weekend should change weekends elements classes', () => {
     const { getByText } = renderComponent();
-    const toggleWeekend = getByText('Hide Weekend');
+    // We want to test with the tools Menu open
+    const toolsMenuButton = document.getElementById('tools-menu-button');
+    if (toolsMenuButton) fireEvent.click(toolsMenuButton);
+    const toggleWeekend = getByText('Hide weekends');
     const weekendElms = document.getElementsByClassName('weekend');
 
     // generate a click on the toggle weekend button to hide weekends days
@@ -79,7 +85,10 @@ describe('Timeline Component', () => {
 
   test('toggling weekend should change weekends elements visibility', () => {
     const { getByText } = renderComponent();
-    const toggleWeekend = getByText('Hide Weekend');
+    // We want to test with the tools Menu open
+    const toolsMenuButton = document.getElementById('tools-menu-button');
+    if (toolsMenuButton) fireEvent.click(toolsMenuButton);
+    const toggleWeekend = getByText('Hide weekends');
     const weekendElms = document.getElementsByClassName('weekend');
 
     // generate a click on the toggle weekend button
@@ -96,6 +105,4 @@ describe('Timeline Component', () => {
       expect(elm).toBeVisible();
     }
   });
-
-*/
 });

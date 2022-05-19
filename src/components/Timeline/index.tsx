@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { useMemo, useEffect, useRef, useCallback } from 'react';
 /*-------------------------------Import Types--------------------------------------------------*/
 import {
   TimelineProps,
@@ -13,22 +13,17 @@ import TimelineMonths from 'src/components/Timeline/TimelineMonths';
 import TimelineYears from './TimelineYears';
 /*-------------------------------Import Modules------------------------------------------------*/
 import dayjs from 'src/utils/dayjs';
-import { useToggle } from 'src/Hooks';
+import { useToggle } from 'src/hooks';
 import { getDatesInArray } from 'src/utils/utils';
 
 import './style.scss';
 
 /**
- *
  * A timeline component build with an array of dates following props start which is a date, and adding interval and granularity following dayjs method dayjs(start).add(interval, granularity)
- *
  * ### Usage
- *
  * ```jsx
  * <Timeline start={} interval={} granularity={} />
  * ```
- *
- *
  */
 const Timeline: React.FC<TimelineProps> = ({
   start,
@@ -38,10 +33,7 @@ const Timeline: React.FC<TimelineProps> = ({
   /**
    * Get all the days according to props to display them in DOM
    */
-  const [days, setDay] = useState<DatesInNestedArray>(
-    getDatesInArray(start, interval, granularity)
-  );
-
+  const days = useMemo(() => getDatesInArray(start, interval, granularity), []);
   /**
    * Adding references on each Element which represent a year, a month or a day
    */
@@ -56,7 +48,7 @@ const Timeline: React.FC<TimelineProps> = ({
   /**
    * Focus on the element which have a date equal to today with the scrollIntoView method
    */
-  const focusOnToday = (): void => {
+  const focusOnToday = useCallback((): void => {
     if (daysElms.current[dayjs().format('YYYY-MM-DD')]) {
       daysElms.current[dayjs().format('YYYY-MM-DD')].scrollIntoView({
         behavior: 'instant',
@@ -64,49 +56,53 @@ const Timeline: React.FC<TimelineProps> = ({
         block: 'start',
       });
     }
-  };
+  }, []);
   /**
    * First render will focus on the today element
    */
   useEffect(() => {
     focusOnToday();
-  }, [daysElms.current[dayjs().format('YYYY-MM-DD')]]);
+  }, []);
   return (
     <div className="tardis__container">
       <Header handleClickToday={focusOnToday} />
       <ul className="timeline__container">
         {days.map(
-          ({ year, dates }, yearIndex) =>
+          ({ year, dates }, yearIndex: number) =>
             dates[yearIndex] && (
               <TimelineYears
                 key={year}
                 content={year}
-                year={year}
-                yearsElms={yearsElms}
+                ref={(elm) => {
+                  yearsElms.current[year] = elm;
+                }}
               >
                 {dates.map(
                   (month, monthIndex: number) =>
-                    month[0] && (
+                    month.length && (
                       <TimelineMonths
                         key={`${dayjs().month(monthIndex).format('MM')}${year}`}
-                        monthIndex={monthIndex}
-                        year={year}
-                        monthsElms={monthsElms}
                         content={dayjs().month(monthIndex).format('MMMM')}
+                        ref={(elm) => {
+                          monthsElms.current[
+                            `${dayjs().month(monthIndex).format('MMMM')}${year}`
+                          ] = elm;
+                        }}
                       >
-                        {month[0] &&
-                          month.map((date) => (
-                            <TimelineDays
-                              key={date.format('YYYY-MM-DD')}
-                              date={date}
-                              isShowWeekend={isShowWeekend}
-                              daysElms={daysElms}
-                              content={[
-                                dayjs(date).format('ddd'),
-                                dayjs(date).format('DD'),
-                              ]}
-                            />
-                          ))}
+                        {month.map((date) => (
+                          <TimelineDays
+                            key={date.format('YYYY-MM-DD')}
+                            date={date}
+                            isShowWeekend={isShowWeekend}
+                            ref={(elm) => {
+                              daysElms.current[date.format('YYYY-MM-DD')] = elm;
+                            }}
+                            content={[
+                              dayjs(date).format('ddd'),
+                              dayjs(date).format('DD'),
+                            ]}
+                          />
+                        ))}
                       </TimelineMonths>
                     )
                 )}

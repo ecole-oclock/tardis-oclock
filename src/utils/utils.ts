@@ -8,10 +8,12 @@ import {
 
 /**
  * Function which return an array of object containing year and array of dates
+ * 
  * @param {TimelineProps['start']} start
  * @param {TimelineProps['interval']} interval
  * @param {TimelineProps['granularity']} granularity
  * @returns {DatesInNestedArray} an array of object representing the year and the dates in a months nested array
+ * 
  * @example
  *  * getDatesInArray('2022-02-12', 36, 'days')
  * // returns

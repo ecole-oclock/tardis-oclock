@@ -5,7 +5,7 @@ import React from 'react';
 
 /* Props for the main Timeline Component */
 export interface TimelineProps {
-  start: DateYMDStringWithoutInexistantsDates | Dayjs | Date;
+  start: DateYMDString | Dayjs | Date;
   interval: number;
   granularity:
     | 'day'
@@ -22,22 +22,17 @@ export interface TimelineProps {
 export interface TimelineDaysProps {
   date: Dayjs;
   isShowWeekend: boolean;
-  daysElms: React.MutableRefObject<referencesLi[]>;
   content?: string[];
+  weekPrefix?: string;
 }
 /* Props for the sub Timeline Component : TimelineMonths */
 export interface TimelineMonthsProps {
-  monthIndex: number;
-  year: string;
-  monthsElms: React.MutableRefObject<referencesLi[]>;
   children: React.ReactNode;
   content?: string;
 }
 /* Props for the sub Timeline Component : TimelineYears */
 export interface TimelineYearsProps {
-  year: string;
   content?: string;
-  yearsElms: React.MutableRefObject<referencesLi[]>;
   children: React.ReactNode;
 }
 /* Interface for the model object YearItem constructed by the function utils/getDatesInArray */
@@ -62,22 +57,6 @@ export type MM = `0${oneToNine}` | `1${0 | 1 | 2}`;
 export type DD = `${0}${oneToNine}` | `${1 | 2}${d}` | `3${0 | 1}`;
 
 export type DateYMDString = `${YYYY}-${MM}-${DD}`;
-
-// // export type DateYMDString = `${DateYMString}-${DD}`;
-// // /**
-// //  * A valid formatted date ('YYYY-MM-DD') between 01/01/2000 and 31/12/2099
-// //  */
-// export type DateYMDStringWithoutInexistantsDates = Exclude<
-//   DateYMDString,
-//   | `${YYYY}-02-30`
-//   | `${YYYY}-02-31`
-//   | `${YYYY}-04-31`
-//   | `${YYYY}-06-31`
-//   | `${YYYY}-09-31`
-//   | `${YYYY}-11-31`
-// >;
-
-export type DateYMDStringWithoutInexistantsDates = string;
 
 /* Type to specify an array of 12 months items, usage in utils/getAllMonthes  */
 export type months = [

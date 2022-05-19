@@ -10,12 +10,9 @@
   border-radius: vars.$borderRadius;
   border: none;
   box-shadow: vars.$boxShadow;
-  font-size: 1rem;
-  -webkit-font-smoothing: subpixel-antialiased;
   &:hover {
     background-color: vars.$primaryColor--darker;
     transform: scale(vars.$scale) translateZ(0);
-    font-size: 1rem;
     -webkit-font-smoothing: subpixel-antialiased;
   }
 }

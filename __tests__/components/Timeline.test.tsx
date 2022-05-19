@@ -3,10 +3,9 @@ import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import dayjs from 'src/utils/dayjs';
 import { TimelineProps } from 'src/components/Timeline/Timeline.types';
 import Timeline from 'src/components/Timeline';
-import ToolsMenu from 'src/components/ToolsMenu';
 
 // declare this variable to access the today date
-const today = dayjs().format('YYYY-MM-DD');
+const today = dayjs().format('YYYY-MM-DD') as TimelineProps['start'];
 
 describe('Timeline Component', () => {
   let props: TimelineProps;
@@ -25,7 +24,7 @@ describe('Timeline Component', () => {
 
   test('should have class today on today date element', () => {
     renderComponent();
-    const todayElm = document.getElementById(today);
+    const todayElm = document.getElementById(today as string);
     expect(todayElm).toHaveClass('today');
   });
 
@@ -39,7 +38,7 @@ describe('Timeline Component', () => {
   test('toggling weekend should change textContent button', async () => {
     const { getByText } = renderComponent();
     // We want to test with the tools Menu open
-    const toolsMenuButton = document.getElementById('tools-menu-button');
+    const toolsMenuButton = document.querySelector('.tools-menu__open-button');
     if (toolsMenuButton) fireEvent.click(toolsMenuButton);
 
     const toggleWeekend = getByText('Hide weekends');
@@ -61,7 +60,7 @@ describe('Timeline Component', () => {
   test('toggling weekend should change weekends elements classes', () => {
     const { getByText } = renderComponent();
     // We want to test with the tools Menu open
-    const toolsMenuButton = document.getElementById('tools-menu-button');
+    const toolsMenuButton = document.querySelector('.tools-menu__open-button');
     if (toolsMenuButton) fireEvent.click(toolsMenuButton);
     const toggleWeekend = getByText('Hide weekends');
     const weekendElms = document.getElementsByClassName('weekend');
@@ -86,7 +85,7 @@ describe('Timeline Component', () => {
   test('toggling weekend should change weekends elements visibility', () => {
     const { getByText } = renderComponent();
     // We want to test with the tools Menu open
-    const toolsMenuButton = document.getElementById('tools-menu-button');
+    const toolsMenuButton = document.querySelector('.tools-menu__open-button');
     if (toolsMenuButton) fireEvent.click(toolsMenuButton);
     const toggleWeekend = getByText('Hide weekends');
     const weekendElms = document.getElementsByClassName('weekend');

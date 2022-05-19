@@ -1,29 +1,19 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { ButtonProps } from './Button.types';
 import './style.scss';
-const Button: React.FC<ButtonProps> = ({
-  content,
-  customClasses,
-  handleClick,
-  disabled,
-}) => {
-  const classes = (): string => {
-    if (customClasses) {
-      if (typeof customClasses !== 'string' && customClasses[0])
-        return customClasses.join(' ');
-      if (typeof customClasses === 'string') return customClasses;
-    }
-    return '';
-  };
-  return (
-    <button
-      className={customClasses ? classes() : 'tardis-button'}
-      onClick={handleClick}
-      disabled={disabled}
-    >
-      {content}
-    </button>
-  );
-};
-
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ content, classes, handleClick, disabled }, ref) => {
+    return (
+      <button
+        ref={ref}
+        className={classes ? classes : 'tardis-button'}
+        onClick={handleClick}
+        disabled={disabled}
+      >
+        {content}
+      </button>
+    );
+  }
+);
+Button.displayName = 'Button';
 export default Button;

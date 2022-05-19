@@ -1,31 +1,20 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import dayjs from 'src/utils/dayjs';
 import { TimelineMonthsProps } from './Timeline.types';
 
-const TimelineMonths: React.FC<TimelineMonthsProps> = ({
-  monthIndex,
-  year,
-  content,
-  monthsElms,
-  children,
-}) => {
-  return (
-    <li
-      className="timeline__months__month"
-      id={dayjs().month(monthIndex).format('YYYY-MM')}
-      ref={(elm) => {
-        monthsElms.current[
-          `${dayjs().month(monthIndex).format('MMMM')}${year}`
-        ] = elm;
-      }}
-    >
-      <div className="timeline__months--info">
-        {content && <span>{content}</span>}
-      </div>
+const TimelineMonths = forwardRef<HTMLLIElement, TimelineMonthsProps>(
+  ({ content, children }, ref) => {
+    return (
+      <li className="timeline__months__month" ref={ref}>
+        <div className="timeline__months--info">
+          {content && <span>{content}</span>}
+        </div>
 
-      <ul className="timeline__days__container">{children}</ul>
-    </li>
-  );
-};
+        <ul className="timeline__days__container">{children}</ul>
+      </li>
+    );
+  }
+);
 
+TimelineMonths.displayName = 'Timeline Month';
 export default TimelineMonths;

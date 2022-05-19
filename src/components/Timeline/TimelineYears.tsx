@@ -1,25 +1,18 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { TimelineYearsProps } from './Timeline.types';
-const TimelineYears: React.FC<TimelineYearsProps> = ({
-  year,
-  content,
-  yearsElms,
-  children,
-}) => {
-  return (
-    <li
-      ref={(elm) => {
-        yearsElms.current[year] = elm;
-      }}
-      id={`year${year}`}
-      className="timeline__years"
-    >
-      <div className="timeline__years--info">
-        {content && <span>{content}</span>}
-      </div>
+const TimelineYears = forwardRef<HTMLLIElement, TimelineYearsProps>(
+  ({ content, children }, ref) => {
+    return (
+      <li className="timeline__years" ref={ref}>
+        <div className="timeline__years--info">
+          {content && <span>{content}</span>}
+        </div>
 
-      <ul className="timeline__months__container">{children}</ul>
-    </li>
-  );
-};
+        <ul className="timeline__months__container">{children}</ul>
+      </li>
+    );
+  }
+);
+
+TimelineYears.displayName = 'Timeline Year';
 export default TimelineYears;

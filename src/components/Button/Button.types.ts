@@ -2,8 +2,7 @@ import React from 'react';
 
 export interface ButtonProps {
   content?: string;
-  customClasses?: string | string[];
-
+  classes?: string;
   handleClick: React.MouseEventHandler;
   disabled?: boolean;
 }

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "module": "ESNext",
     "jsx": "react",
     "sourceMap": true,
@@ -12,12 +13,13 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
+    "suppressImplicitAnyIndexErrors": true,
     "declarationDir": "dist/types",
     "baseUrl": "./src",
     "paths": {
       "src/*": ["*"]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules/*", "dist", "**/*.test.ts"]
+
+  "exclude": ["node_modules/*", "dist", "./jest.config.ts"]
 }

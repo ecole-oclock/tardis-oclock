@@ -1,0 +1,40 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import Timeline from 'src/components/Timeline';
+
+<Meta title="Timeline/Test Timeline" component={Timeline} />
+
+# Timeline
+
+Let's define a story for our `Timeline` component:
+
+<Story name="positive">
+  <Timeline start="2022-02-12" interval={1} granularity="year" />
+</Story>
+
+We can drop it in a `Canvas` to get a code snippet:
+
+<Canvas>
+  <Story name="negative">
+    <Timeline start="2022-02-12" interval={1} granularity="year" />
+  </Story>
+</Canvas>
+
+We can even preview multiple stories in a block. This
+gets rendered as a group, but defines individual stories
+with unique URLs and isolated snapshot tests.
+
+<Canvas>
+  <Story name="warning">
+    <Timeline start="2022-02-12" interval={1} granularity="day" />
+  </Story>
+  <Story name="neutral">
+    <Timeline start="2022-02-12" interval={1} granularity="week" />
+  </Story>
+  <Story name="error">
+    <Timeline start="2022-02-12" interval={1} granularity="month" />
+  </Story>
+  <Story name="with icon">
+    <Timeline start="2022-02-12" interval={1} granularity="year" />
+  </Story>
+</Canvas>

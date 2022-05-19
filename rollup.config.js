@@ -1,3 +1,4 @@
+import path from 'path';
 import { babel } from '@rollup/plugin-babel';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
@@ -8,7 +9,7 @@ import json from '@rollup/plugin-json';
 import { terser } from 'rollup-plugin-terser';
 import alias from '@rollup/plugin-alias';
 import packageJson from './package.json';
-import path from 'path';
+import svgr from '@svgr/rollup';
 import styles from 'rollup-plugin-styles';
 import dts from 'rollup-plugin-dts';
 
@@ -40,11 +41,19 @@ export default [
       }),
       resolve(),
       peerDepsExternal(),
-
+      svgr(),
       commonjs(),
       typescript({
         useTsconfigDeclarationDir: true,
         tsconfig: './tsconfig.json',
+        tsconfigOverride: {
+          exclude: [
+            './node_modules/*',
+            './dist',
+            './src/stories/**/*',
+            './__tests__/**/*',
+          ],
+        },
       }),
       babel({
         exclude: 'node_modules/**',
@@ -52,10 +61,10 @@ export default [
         babelHelpers: 'bundled',
       }),
       alias({
-        resolve: ['.js', '.ts', '.tsx', '.jsx', '.css', '.scss'],
+        resolve: ['.js', '.ts', '*.tsx', '.jsx', '.css', '.scss'],
         entries: [
           { find: 'src', replacement: './src' },
-          // { find: 'components', replacement: './src/components' },
+          { find: 'components', replacement: './src/components' },
         ],
       }),
       image(),
@@ -65,7 +74,7 @@ export default [
     external: ['react', 'react-dom'],
   },
   {
-    input: 'dist/types/index.d.ts',
+    input: 'dist/types/src/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     external: [/\.scss$/],
     plugins: [dts()],

@@ -1,0 +1,31 @@
+.tooltip {
+  &__container {
+    position: relative;
+    z-index: 9999;
+  }
+  &__box {
+    position: absolute;
+    background: #fff;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    bottom: calc(100% + 5px);
+    left: 25%;
+    display: none;
+    font-size: 0.8rem;
+
+    &--visible {
+      background: rgba(0, 0, 0, 0.7);
+      display: block;
+    }
+  }
+  &__arrow {
+    position: absolute;
+    bottom: -10px;
+    transform: rotate(180deg);
+    left: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.7) transparent;
+  }
+}

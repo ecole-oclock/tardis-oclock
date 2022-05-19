@@ -1,0 +1,108 @@
+@use 'src/scss/vars';
+
+.timeline {
+  &__container {
+    display: flex;
+    overflow-x: scroll;
+
+    flex-wrap: nowrap;
+  }
+  &__years {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    &--info {
+      // border-bottom: 1px solid vars.$primaryColor;
+      // border-right: 1px solid vars.$primaryColor;
+      text-align: left;
+      // padding: 0.2rem;
+      & span {
+        position: sticky;
+        left: 20px;
+      }
+    }
+  }
+  &__months {
+    &__container {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    &__month {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+    &--info {
+      // border-bottom: 1px solid vars.$primaryColor;
+      // border-right: 1px solid vars.$primaryColor;
+      text-align: left;
+      margin-bottom: 1.5rem;
+      //  padding: 0.2rem;
+      & span {
+        position: sticky;
+        left: 20px;
+        margin-right: 2rem;
+      }
+    }
+  }
+  &__weeks {
+    &--info {
+      font-size: 0.8rem;
+      position: absolute;
+      top: -0.7rem;
+      left: 0;
+      &--hidden {
+        visibility: hidden;
+        width: 1.5rem;
+        padding: 0.2rem;
+        margin: 0.2rem;
+        position: absolute;
+        top: -1rem;
+        left: 0;
+      }
+      &--remove {
+        display: none;
+      }
+    }
+  }
+  &__days {
+    &__container {
+      display: flex;
+    }
+
+    &__day {
+      display: flex;
+      flex-direction: column;
+
+      position: relative;
+    }
+    &--info {
+      padding: 0.2rem;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid vars.$primaryColor;
+      border-top: 1px solid vars.$primaryColor;
+      border-bottom: 1px solid vars.$primaryColor;
+    }
+  }
+}
+.odd-weeks {
+  background-color: vars.$lightColor;
+}
+.today {
+  background-color: vars.$todayColor;
+}
+.weekend {
+  background-color: vars.$primaryColor--darker;
+  color: vars.$lightColor;
+  &--hidden {
+    display: none;
+  }
+}
+// Future childs for Timeline component => here just for testing
+.cols {
+  height: 87vh;
+
+  border-right: 1px solid vars.$primaryColor;
+  overflow-y: hidden;
+}

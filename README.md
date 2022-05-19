@@ -1,39 +1,75 @@
-# Rollup Template
+# T.A.R.D.I.S - O'clock
 
 Tardis O'clock is an open source ReactJS components library (add a better description and image to illustrate the library's components)
 
 ## Getting Started
 
----
-
 ### Prerequisites
 
-Besoin de pré requis ? (dépendant de dayJs)
+Tardis Oclock is running with NPM
 
 ### Installation
 
+This project is not actually publish on NPM, you can run it locally to use the library in your application.
+
+1. Clone the project from Github, install dependencies, then move on the develop branch, following commands:
+
 ```bash
-npm i -D tardis-oclock
+git clone git@github.com:ecole-oclock/tardis-oclock.git <directory>
+cd <directory>
+npm i
+git checkout develop
 ```
 
-Then, import components and styles to your application
+2. Make a build by running build script:
+
+```bash
+npm run build
+```
+
+this will delete previous dist directory and perfom a build from our library following the Rollup configuration.
+
+3. Use NPM link to simulate an NPM publish locally, NPM will install the library package locally:
+
+```bash
+cd dist/
+npm link
+```
+
+4. then create a symbolic link from globally-installed 'tardis-oclock' to node_modules/ in your application :
+
+```bash
+cd ../../<your-app-directory>
+npm link tardis-oclock
+```
+
+**Knowings Issues :**
+
+According to the [official React documentation](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react), to avoid React running two instances (one in the app, and the other one in the lib), you may link the app dependencies to your library :
+
+Open a terminal on the root of your library folder :
+
+```bash
+npm link ../paste_to_your_app/node_modules/react
+```
+
+5. Then, import components and styles to your application
 
 ```js
-import { TestComponent, AnotherComponent } from 'tardis-oclock';
+import { Timeline } from 'tardis-oclock';
 import 'tardis-oclock/dist/styles.css';
 ```
 
-### Documentation
+6. Run the documentation server locally :
+   On your tardis-oclock folder, you can run this command to open storybook in development mode :
 
-You can find the complete documentation [here](http://localhost:6006)
+```bash
+npm run storybook
+```
 
-## Testing
-
----
+This will open a server running our Storybook instance on [port 6006](http://localhost:6006/)
 
 ## Build with :
-
----
 
 - [Rollup](https://rollupjs.org/guide/en/) - Module bundler for JavaScript.
 - [React](https://reactjs.org/docs/getting-started.html) - JavaScript library for building user interfaces.
@@ -48,18 +84,12 @@ You can find the complete documentation [here](http://localhost:6006)
 
 ## Depending on :
 
----
-
 - [DayJS](https://day.js.org/en/) - A minimalist Javascript library that parses, validates, manipulates, and displays dates and times
 
 ## Contributing
 
----
-
-Show [contributions rules](./CONTRIBUTING.md)
+If you want to contribute to our project, take a look on [contributions rules](./CONTRIBUTING.md)
 
 ## Licence
-
----
 
 Show [licence](./LICENCE.md)

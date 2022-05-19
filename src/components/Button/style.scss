@@ -1,0 +1,18 @@
+@use 'src/scss/vars';
+
+.tardis-button {
+  background-color: vars.$primaryColor;
+  margin: vars.$gutter;
+  color: vars.$lightColor;
+  transform: scale(1) translateZ(0);
+  transition: background-color 0.3s, transform 0.3s;
+  padding: vars.$gutter;
+  border-radius: vars.$borderRadius;
+  border: none;
+  box-shadow: vars.$boxShadow;
+  &:hover {
+    background-color: vars.$primaryColor--darker;
+    transform: scale(vars.$scale) translateZ(0);
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}

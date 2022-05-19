@@ -1,4 +1,4 @@
-# Rollup Template
+# T.A.R.D.I.S - O'clock
 
 Tardis O'clock is an open source ReactJS components library (add a better description and image to illustrate the library's components)
 

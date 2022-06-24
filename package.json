@@ -26,7 +26,11 @@
     "prepare": "husky install",
     "commit": "git-cz",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "release": "standard-version",
+    "release:minor": "standard-version -- --release-as minor",
+    "release:major": "standard-version -- --release-as major",
+    "release:patch": "standard-version -- --release-as patch"
   },
   "keywords": [
     "timeline",
@@ -92,6 +96,7 @@
     "rollup-plugin-typescript2": "^0.31.2",
     "sass": "^1.50.0",
     "sass-loader": "^10.1.1",
+    "standard-version": "^9.5.0",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
     "tsconfig-paths-webpack-plugin": "^3.5.2",

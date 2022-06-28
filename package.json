@@ -10,6 +10,11 @@
   ],
   "private": false,
   "config-oclock": "git+ssh://git@github.com:O-clock-Dev/config-oclock#1.2.5",
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
@@ -19,8 +24,13 @@
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "prepare": "husky install",
+    "commit": "git-cz",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "release": "standard-version",
+    "release:minor": "standard-version -- --release-as minor",
+    "release:major": "standard-version -- --release-as major",
+    "release:patch": "standard-version -- --release-as patch"
   },
   "keywords": [
     "timeline",
@@ -31,6 +41,9 @@
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-react": "^7.16.7",
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@commitlint/cz-commitlint": "^17.0.0",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^21.0.3",
@@ -54,6 +67,7 @@
     "babel-loader": "^8.2.4",
     "babel-preset-react-app": "^10.0.1",
     "classnames": "^2.3.1",
+    "commitizen": "^4.2.4",
     "eslint": "^8.13.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
@@ -82,6 +96,7 @@
     "rollup-plugin-typescript2": "^0.31.2",
     "sass": "^1.50.0",
     "sass-loader": "^10.1.1",
+    "standard-version": "^9.5.0",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
